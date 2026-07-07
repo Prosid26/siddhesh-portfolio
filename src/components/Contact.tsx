@@ -163,7 +163,7 @@ export default function Contact() {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 p-3 rounded-full bg-accent text-white hover:bg-[#684be3] shadow-lg shadow-accent/20 hover:shadow-accent/40 transition-all duration-300"
+          className="fixed bottom-8 right-8 z-40 p-3 rounded-full bg-accent text-white hover:bg-[#684be3] shadow-lg shadow-accent/20 hover:shadow-accent/40 transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center"
           aria-label="Scroll back to top"
         >
           <ChevronUp className="h-5 w-5" />

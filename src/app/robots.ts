@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://github.com/Prosid26/sitemap.xml',
+    sitemap: 'https://siddhesh-portfolio-weld.vercel.app/sitemap.xml',
   };
 }

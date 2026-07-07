@@ -15,12 +15,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Siddhesh Narvekar | Software Engineer Portfolio",
   description: "Portfolio of Siddhesh Narvekar showcasing Full Stack Development, Artificial Intelligence, Computer Vision and Blockchain projects.",
+  alternates: {
+    canonical: "https://siddhesh-portfolio-weld.vercel.app",
+  },
   openGraph: {
     title: "Siddhesh Narvekar | Software Engineer Portfolio",
     description: "Portfolio of Siddhesh Narvekar showcasing Full Stack Development, Artificial Intelligence, Computer Vision and Blockchain projects.",
     type: "website",
     locale: "en_US",
-    url: "https://github.com/Prosid26",
+    url: "https://siddhesh-portfolio-weld.vercel.app",
     siteName: "Siddhesh Narvekar Portfolio",
   },
   twitter: {

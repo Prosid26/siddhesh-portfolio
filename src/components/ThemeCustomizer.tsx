@@ -29,7 +29,7 @@ export default function ThemeCustomizer() {
       {/* Floating Settings Trigger Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-24 right-8 z-40 p-3.5 rounded-full glass-panel text-zinc-300 hover:text-white shadow-xl hover:shadow-accent/20 hover:scale-105 transition-all duration-300 border border-zinc-800 focus:outline-none"
+        className="fixed bottom-24 right-8 z-40 p-3.5 rounded-full glass-panel text-zinc-300 hover:text-white shadow-xl hover:shadow-accent/20 hover:scale-105 transition-all duration-300 border border-zinc-800 focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center"
         aria-label="Open design system settings customizer"
       >
         <Settings className="h-5 w-5 animate-[spin_8s_linear_infinite] hover:animate-[spin_3s_linear_infinite]" />
