@@ -3,13 +3,16 @@
 
 :root {
   --background: #030303;
-  --foreground: #f4f4f5;
+  --foreground: #ffffff;
+  --foreground-muted: #a1a1aa;
   --accent: #7c5cfc;
   --accent-glow: rgba(124, 92, 252, 0.15);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-bg: rgba(9, 9, 11, 0.6);
   --glass-blur: 12px;
   --card-radius: 16px;
+  --card-bg: rgba(20, 20, 25, 0.4);
+  --shadow-preset: 0 10px 30px -10px rgba(0,0,0,0.7);
 }
 
 @theme inline {
@@ -22,10 +25,20 @@
 
 body {
   background-color: var(--background);
-  color: var(--foreground);
+  color: var(--foreground-muted);
   font-family: var(--font-sans);
   overflow-x: hidden;
   position: relative;
+}
+
+/* Global Transitions for Premium Feel */
+body, .glass-panel, .glow-card, header, nav, h1, h2, h3, h4, h5, h6, p, span, a, button, footer, ul, li {
+  transition: background-color 300ms ease,
+              color 300ms ease,
+              border-color 300ms ease,
+              box-shadow 300ms ease,
+              backdrop-filter 300ms ease,
+              border-radius 300ms ease;
 }
 
 /* Custom scrollbar */
@@ -34,16 +47,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #030303;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1f1f23;
+  background: var(--glass-border);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2d2d34;
+  background: var(--accent);
 }
 
 /* Soft blur background animations */
@@ -73,6 +86,7 @@ body {
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-preset);
 }
 
 /* Card radius overrides reacting to theme variable */
@@ -101,7 +115,7 @@ body {
   padding: 1px;
   background: radial-gradient(
     600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
-    rgba(124, 92, 252, 0.4),
+    var(--accent),
     transparent 40%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -115,7 +129,7 @@ body {
 }
 
 .glow-card:hover::after {
-  opacity: 1;
+  opacity: 0.6;
 }
 
 /* Scroll snap scroll indicator */
@@ -143,3 +157,83 @@ body {
   outline-offset: 4px;
 }
 
+/* ====================================================
+   LIGHT MODE DESIGN SYSTEM IMPLEMENTATION
+   ==================================================== */
+body.light-mode {
+  /* Dynamic modifications of text classes to prevent contrast failures */
+  --glass-border: rgba(9, 9, 11, 0.08);
+}
+
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode h6,
+body.light-mode .text-white {
+  color: var(--foreground) !important;
+}
+
+body.light-mode .text-zinc-400,
+body.light-mode .text-zinc-500,
+body.light-mode .text-zinc-300 {
+  color: var(--foreground-muted) !important;
+}
+
+body.light-mode [class*="bg-[#09090b]"],
+body.light-mode [class*="bg-zinc-950"],
+body.light-mode [class*="bg-zinc-900"],
+body.light-mode [class*="bg-black"] {
+  background-color: var(--card-bg) !important;
+}
+
+body.light-mode [class*="border-zinc-800"],
+body.light-mode [class*="border-zinc-900"],
+body.light-mode [class*="border-white"] {
+  border-color: var(--glass-border) !important;
+}
+
+/* Muted visual elements for light mode */
+body.light-mode .bg-[radial-gradient\(\#1c1917_1px\,transparent_1px\)] {
+  background-image: radial-gradient(rgba(9, 9, 11, 0.04) 1px, transparent 1px) !important;
+}
+
+body.light-mode ::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+}
+
+body.light-mode ::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* Soft ambient background blob adjustments in light mode */
+body.light-mode .animate-glow-1 {
+  background-color: rgba(124, 92, 252, 0.04) !important;
+}
+
+body.light-mode .animate-glow-2 {
+  background-color: rgba(59, 130, 246, 0.03) !important;
+}
+
+/* Animated Link Underline */
+.animated-underline {
+  position: relative;
+  display: inline-block;
+}
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent);
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.animated-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}

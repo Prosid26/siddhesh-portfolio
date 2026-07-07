@@ -32,7 +32,7 @@ export default function About() {
   } as const;
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-[#030303]">
+    <section id="about" className="py-24 relative overflow-hidden bg-transparent">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Title */}

@@ -218,7 +218,7 @@ export default function Projects() {
     : projects.filter((project) => project.category === activeCategory);
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden bg-[#030303]">
+    <section id="projects" className="py-24 relative overflow-hidden bg-transparent">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -304,7 +304,7 @@ export default function Projects() {
 
                     {/* Key Highlights */}
                     <div className="mb-6 bg-zinc-950/50 p-4 rounded-xl border border-zinc-900/60">
-                      <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider block mb-2">Key Features</span>
+                      <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider block mb-2">What I Built</span>
                       <ul className="grid grid-cols-2 gap-2">
                         {project.highlights.map((highlight) => (
                           <li key={highlight} className="text-[11px] text-zinc-400 flex items-center gap-1.5">

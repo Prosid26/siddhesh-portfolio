@@ -88,7 +88,7 @@ export default function Hero() {
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-16 px-4 sm:px-6 lg:px-8 bg-[#020205]"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-16 px-4 sm:px-6 lg:px-8 bg-transparent"
     >
       {/* Ambient background glows */}
       <motion.div
@@ -142,6 +142,16 @@ export default function Hero() {
               </p>
             </div>
 
+            {/* Subtle animated status badge */}
+            <motion.div
+              animate={{ opacity: [0.8, 1, 0.8] }}
+              transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
+              className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 text-xs font-medium select-none"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Available for Full-Time Software Engineering Opportunities
+            </motion.div>
+
             {/* Short paragraph description */}
             <p className="mt-6 text-base sm:text-lg text-zinc-400 max-w-xl leading-relaxed">
               Passionate about building AI-powered applications, scalable web platforms, 
@@ -150,30 +160,41 @@ export default function Hero() {
             </p>
 
             {/* CTA Buttons */}
-            <div className="mt-10 flex flex-wrap gap-4 w-full sm:w-auto">
-              <a
-                href="#projects"
-                className="group inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white hover:bg-[#684be3] transition-all duration-300 shadow-lg shadow-accent/20 hover:shadow-accent/40 w-full sm:w-auto text-center"
-              >
-                View Projects
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-zinc-800 bg-[#09090b]/50 hover:bg-[#121214] px-6 py-3 text-sm font-semibold text-zinc-300 hover:text-white transition-all duration-300 w-full sm:w-auto text-center"
-              >
-                Download Resume
-                <Download className="ml-2 h-4 w-4" />
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center rounded-full border border-zinc-800/60 bg-transparent hover:bg-zinc-900/40 px-6 py-3 text-sm font-semibold text-zinc-400 hover:text-zinc-200 transition-all duration-300 w-full sm:w-auto text-center"
-              >
-                Contact Me
-                <Mail className="ml-2 h-4 w-4" />
-              </a>
+            <div className="mt-10 flex flex-col items-start gap-4">
+              <div className="flex flex-wrap gap-4 w-full sm:w-auto">
+                <a
+                  href="#projects"
+                  className="group inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white hover:bg-[#684be3] transition-all duration-300 shadow-lg shadow-accent/20 hover:shadow-accent/40 w-full sm:w-auto text-center"
+                >
+                  View Projects
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </a>
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-zinc-800 bg-[#09090b]/50 hover:bg-[#121214] px-6 py-3 text-sm font-semibold text-zinc-300 hover:text-white transition-all duration-300 w-full sm:w-auto text-center"
+                >
+                  Download Resume
+                  <Download className="ml-2 h-4 w-4" />
+                </a>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center rounded-full border border-zinc-800/60 bg-transparent hover:bg-zinc-900/40 px-6 py-3 text-sm font-semibold text-zinc-400 hover:text-zinc-200 transition-all duration-300 w-full sm:w-auto text-center"
+                >
+                  Contact Me
+                  <Mail className="ml-2 h-4 w-4" />
+                </a>
+              </div>
+              
+              {/* Additional elegant details row */}
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs font-mono text-zinc-500 pt-2 select-none">
+                <span>📍 Mumbai, India</span>
+                <span className="text-zinc-700 font-bold">•</span>
+                <span>✈️ Open to Relocation</span>
+                <span className="text-zinc-700 font-bold">•</span>
+                <span>💼 Open to Full-Time</span>
+              </div>
             </div>
           </motion.div>
 

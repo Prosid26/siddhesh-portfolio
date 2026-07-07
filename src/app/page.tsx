@@ -80,13 +80,13 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Main Content */}
-      <div className="relative min-h-screen text-zinc-300 bg-[#020205] selection:bg-accent/30 selection:text-white">
+      <div className="relative min-h-screen text-zinc-300 selection:bg-accent/30 selection:text-white">
         
         {/* Subtle Cursor Glow Effect */}
         <div
           className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-500 hidden md:block"
           style={{
-            background: `radial-gradient(500px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(124, 92, 252, 0.045), transparent 80%)`,
+            background: `radial-gradient(500px circle at ${mousePosition.x}px ${mousePosition.y}px, var(--accent-glow), transparent 80%)`,
           }}
         />
 

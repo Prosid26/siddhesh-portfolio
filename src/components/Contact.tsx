@@ -47,7 +47,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden bg-[#030303] border-t border-zinc-900/50">
+    <section id="contact" className="py-24 relative overflow-hidden bg-transparent border-t border-zinc-900/50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
@@ -105,9 +105,56 @@ export default function Contact() {
         </div>
 
         {/* Footer */}
-        <div className="border-t border-zinc-900 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-mono">
-          <p>© {new Date().getFullYear()} Siddhesh Narvekar. All rights reserved.</p>
-          <p>Designed and Built by Siddhesh Narvekar.</p>
+        <div className="border-t border-zinc-900/60 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-zinc-500 font-mono">
+          <div className="space-y-1.5 text-center md:text-left">
+            <p className="text-white font-semibold">Designed & Engineered by Siddhesh Narvekar</p>
+            <p className="text-[10px] text-zinc-500 flex flex-wrap items-center justify-center md:justify-start gap-1">
+              Built with
+              <span className="text-zinc-400">Next.js</span> • 
+              <span className="text-zinc-400">TypeScript</span> • 
+              <span className="text-zinc-400">TailwindCSS</span> • 
+              <span className="text-zinc-400">Framer Motion</span>
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            {/* Vercel Deploy Badge */}
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[10px] font-bold text-zinc-400 select-none">
+              <svg viewBox="0 0 116 100" fill="currentColor" className="h-2.5 w-2.5 text-white shrink-0">
+                <path d="M57.5 0L115 100H0L57.5 0Z" />
+              </svg>
+              <span>Powered by Vercel</span>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-4">
+              <a
+                href="https://github.com/Prosid26"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-white transition-colors"
+                aria-label="GitHub Profile"
+              >
+                <Github className="h-4 w-4" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/narvekar-siddhesh-7a216b31b"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-white transition-colors"
+                aria-label="LinkedIn Profile"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+              <a
+                href="mailto:siddheshnarvekar71@gmail.com"
+                className="hover:text-white transition-colors"
+                aria-label="Email Siddhesh"
+              >
+                <Mail className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
         </div>
 
       </div>

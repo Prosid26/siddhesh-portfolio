@@ -46,7 +46,7 @@ export const projects: Project[] = [
     category: 'ai-cv',
     github: 'https://github.com/Prosid26/ai-pose-trainer',
     image: '/images/fitness-trainer.jpg',
-    highlights: ['Real-time pose detection', 'Posture correction', 'Computer Vision', 'AI-powered feedback']
+    highlights: ['Real-time pose estimation', 'Computer Vision', 'Posture correction', 'AI feedback']
   },
   {
     id: 'restaurant-erp',
@@ -56,7 +56,7 @@ export const projects: Project[] = [
     category: 'fullstack',
     github: 'https://github.com/Prosid26/restaurant-erp',
     image: '/images/restaurant-erp.jpg',
-    highlights: ['QR Ordering', 'Admin Dashboard', 'Authentication', 'Restaurant Management']
+    highlights: ['QR Ordering', 'Authentication', 'Admin Dashboard', 'Multi-brand customization']
   },
   {
     id: 'nft-marketplace',
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     category: 'web3',
     github: 'https://github.com/Prosid26/nft-marketplace',
     image: '/images/nft-marketplace.jpg',
-    highlights: ['Smart Contracts', 'NFT Marketplace', 'Wallet Integration', 'Web3']
+    highlights: ['Smart Contracts', 'Wallet Integration', 'NFT Trading', 'Ethereum']
   },
   {
     id: 'eyeview-ai',
@@ -76,7 +76,7 @@ export const projects: Project[] = [
     category: 'ai-cv',
     github: 'https://github.com/Prosid26/eyeview-ai',
     image: '/images/eyeview-ai.jpg',
-    highlights: ['Video Analytics', 'Backend Development', 'AI Processing', 'Computer Vision']
+    highlights: ['Video Analytics', 'AI Processing', 'Backend', 'Computer Vision']
   }
 ];
 

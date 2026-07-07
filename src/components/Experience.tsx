@@ -16,7 +16,7 @@ const iconMap: Record<string, any> = {
 
 export default function Experience() {
   return (
-    <section id="timeline" className="py-24 relative overflow-hidden bg-[#020205]">
+    <section id="timeline" className="py-24 relative overflow-hidden bg-transparent">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}

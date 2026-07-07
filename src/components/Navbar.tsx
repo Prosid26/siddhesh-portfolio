@@ -55,7 +55,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-zinc-400 hover:text-white transition-colors duration-200"
+                className="text-sm font-medium text-zinc-400 hover:text-white transition-colors duration-200 animated-underline"
               >
                 {link.name}
               </a>

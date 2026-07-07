@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Settings, X, RotateCcw, Palette, Type, Activity, Layers, Maximize, Shield } from 'lucide-react';
+import { Settings, X, RotateCcw, Palette, Type, Activity, Layers, Maximize, Shield, Sun, Moon } from 'lucide-react';
 import { usePortfolioTheme, AccentColor, FontPreset, MotionMode, GlassIntensity, CardRadiusPreset, AppearanceTheme } from '@/context/ThemeContext';
 
 export default function ThemeCustomizer() {
@@ -22,7 +22,7 @@ export default function ThemeCustomizer() {
   const motionPresets: MotionMode[] = ['Normal', 'Reduced Motion', 'Ultra Smooth'];
   const glassPresets: GlassIntensity[] = ['Subtle', 'Medium', 'High'];
   const radiusPresets: CardRadiusPreset[] = ['Small', 'Medium', 'Large'];
-  const appearancePresets: AppearanceTheme[] = ['Dark', 'Midnight', 'Graphite'];
+  const appearancePresets: AppearanceTheme[] = ['Light', 'Dark', 'Midnight', 'Graphite', 'Auto'];
 
   return (
     <>
@@ -30,7 +30,7 @@ export default function ThemeCustomizer() {
       <button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-24 right-8 z-40 p-3.5 rounded-full glass-panel text-zinc-300 hover:text-white shadow-xl hover:shadow-accent/20 hover:scale-105 transition-all duration-300 border border-zinc-800 focus:outline-none"
-        aria-label="Open portfolio settings customizer"
+        aria-label="Open design system settings customizer"
       >
         <Settings className="h-5 w-5 animate-[spin_8s_linear_infinite] hover:animate-[spin_3s_linear_infinite]" />
       </button>
@@ -45,7 +45,7 @@ export default function ThemeCustomizer() {
               animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black z-40 backdrop-blur-xs"
+              className="fixed inset-0 bg-black z-45 backdrop-blur-xs"
             />
 
             {/* Sidebar Drawer */}
@@ -62,10 +62,13 @@ export default function ThemeCustomizer() {
               }}
             >
               {/* Header */}
-              <div className="p-6 border-b border-zinc-900 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Palette className="h-4.5 w-4.5 text-accent" />
-                  <h3 className="text-base font-bold text-white tracking-tight">Experience Customizer</h3>
+              <div className="p-6 border-b border-zinc-900/60 flex items-center justify-between">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <Palette className="h-4.5 w-4.5 text-accent" />
+                    <h3 className="text-base font-bold text-white tracking-tight">Design System</h3>
+                  </div>
+                  <p className="text-[10px] text-zinc-500 font-mono mt-0.5">Customize your experience.</p>
                 </div>
                 <button
                   onClick={() => setIsOpen(false)}
@@ -82,7 +85,7 @@ export default function ThemeCustomizer() {
                 {/* 1. Theme Accent */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-                    <Palette className="h-3.5 w-3.5" />
+                    <Palette className="h-3.5 w-3.5 text-accent" />
                     <span>Theme Accent</span>
                   </div>
                   <div className="grid grid-cols-3 gap-2">
@@ -93,7 +96,7 @@ export default function ThemeCustomizer() {
                         className={`flex flex-col items-center justify-center p-2.5 rounded-xl border text-[10px] font-mono transition-all duration-300 ${
                           settings.accent === preset.name
                             ? 'bg-zinc-900 border-accent text-white shadow-md shadow-accent/10'
-                            : 'bg-zinc-950/60 border-zinc-900 text-zinc-400 hover:border-zinc-800'
+                            : 'bg-zinc-950/60 border-zinc-900/60 text-zinc-400 hover:border-zinc-800'
                         }`}
                       >
                         <span
@@ -106,10 +109,35 @@ export default function ThemeCustomizer() {
                   </div>
                 </div>
 
-                {/* 2. Typography */}
+                {/* 2. Appearance Themes */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-                    <Type className="h-3.5 w-3.5" />
+                    <Layers className="h-3.5 w-3.5 text-accent" />
+                    <span>Appearance</span>
+                  </div>
+                  <div className="grid grid-cols-5 gap-1 bg-zinc-950/80 p-1 rounded-xl border border-zinc-900">
+                    {appearancePresets.map((preset) => {
+                      return (
+                        <button
+                          key={preset}
+                          onClick={() => updateSetting('theme', preset)}
+                          className={`py-1.5 rounded-lg text-[9px] transition-all duration-300 font-medium ${
+                            settings.theme === preset
+                              ? 'bg-zinc-900 border border-zinc-850 text-white shadow'
+                              : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
+                          }`}
+                        >
+                          {preset}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 3. Typography */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
+                    <Type className="h-3.5 w-3.5 text-accent" />
                     <span>Typography</span>
                   </div>
                   <div className="flex flex-col gap-1.5">
@@ -133,33 +161,10 @@ export default function ThemeCustomizer() {
                   </div>
                 </div>
 
-                {/* 3. Appearance (Dark presets only) */}
+                {/* 4. Motion Dynamics */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-                    <Layers className="h-3.5 w-3.5" />
-                    <span>Appearance (Dark Themes)</span>
-                  </div>
-                  <div className="grid grid-cols-3 gap-1.5 bg-zinc-950/80 p-1 rounded-xl border border-zinc-900">
-                    {appearancePresets.map((preset) => (
-                      <button
-                        key={preset}
-                        onClick={() => updateSetting('theme', preset)}
-                        className={`py-1.5 rounded-lg text-xs transition-all duration-300 font-medium ${
-                          settings.theme === preset
-                            ? 'bg-zinc-900 border border-zinc-800 text-white shadow'
-                            : 'text-zinc-500 hover:text-zinc-300 border border-transparent'
-                        }`}
-                      >
-                        {preset}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* 4. Motion Timing */}
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-                    <Activity className="h-3.5 w-3.5" />
+                    <Activity className="h-3.5 w-3.5 text-accent" />
                     <span>Motion Dynamics</span>
                   </div>
                   <div className="grid grid-cols-3 gap-1.5 bg-zinc-950/80 p-1 rounded-xl border border-zinc-900">
@@ -182,7 +187,7 @@ export default function ThemeCustomizer() {
                 {/* 5. Glass Intensity */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-                    <Layers className="h-3.5 w-3.5" />
+                    <Layers className="h-3.5 w-3.5 text-accent" />
                     <span>Glass Intensity</span>
                   </div>
                   <div className="grid grid-cols-3 gap-1.5 bg-zinc-950/80 p-1 rounded-xl border border-zinc-900">
@@ -202,10 +207,10 @@ export default function ThemeCustomizer() {
                   </div>
                 </div>
 
-                {/* 6. Card Radius */}
+                {/* 6. Card Corner Radius */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-                    <Maximize className="h-3.5 w-3.5" />
+                    <Maximize className="h-3.5 w-3.5 text-accent" />
                     <span>Card Corner Radius</span>
                   </div>
                   <div className="grid grid-cols-3 gap-1.5 bg-zinc-950/80 p-1 rounded-xl border border-zinc-900">
@@ -227,23 +232,33 @@ export default function ThemeCustomizer() {
 
               </div>
 
-              {/* Footer */}
-              <div className="p-6 border-t border-zinc-900 bg-zinc-950/40 space-y-4">
-                {/* Reset Action */}
+              {/* Footer Actions */}
+              <div className="p-6 border-t border-zinc-900/60 bg-zinc-950/40 space-y-4">
+                {/* Reset button */}
                 <button
                   onClick={resetSettings}
                   className="flex items-center justify-center gap-1.5 w-full py-2.5 rounded-xl border border-zinc-800 hover:border-zinc-700 bg-zinc-900/60 hover:bg-zinc-900 text-xs font-semibold text-zinc-400 hover:text-white transition-all duration-300"
                 >
-                  <RotateCcw className="h-3.5 w-3.5" />
+                  <RotateCcw className="h-3.5 w-3.5 animate-spin-reverse" />
                   Reset to Default
                 </button>
 
-                {/* ERP Branding note */}
-                <div className="p-3.5 rounded-xl bg-accent/5 border border-accent/10 flex gap-2.5 items-start">
-                  <Shield className="h-4.5 w-4.5 text-accent shrink-0 mt-0.5" />
-                  <p className="text-[10px] text-zinc-400 leading-normal">
-                    This customizer demonstrates dynamic branding concepts modeled from my **Restaurant ERP** project.
+                {/* Inspired by Restaurant ERP - Premium Feature Card */}
+                <div className="p-4 rounded-xl bg-accent/5 border border-accent/10 flex flex-col gap-2">
+                  <div className="flex items-center gap-2 text-xs font-bold text-white">
+                    <Shield className="h-4 w-4 text-accent shrink-0" />
+                    <span>Inspired by Restaurant ERP</span>
+                  </div>
+                  <p className="text-[10px] text-zinc-400 leading-relaxed">
+                    This portfolio uses the same dynamic branding concepts I implemented in my Restaurant ERP platform, where restaurants can personalize colors, typography, appearance and user experience.
                   </p>
+                  <div className="pt-2 border-t border-zinc-900/60 flex flex-wrap gap-1.5">
+                    {['React Context', 'CSS Variables', 'Theme Tokens', 'Local Storage'].map((tech) => (
+                      <span key={tech} className="text-[8px] font-mono text-zinc-500 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-850">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
