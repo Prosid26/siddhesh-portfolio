@@ -1,65 +1,125 @@
-import Image from "next/image";
+'use client';
+
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import About from '@/components/About';
+import TechStack from '@/components/TechStack';
+import Projects from '@/components/Projects';
+import Experience from '@/components/Experience';
+import Achievements from '@/components/Achievements';
+import GithubSection from '@/components/GithubSection';
+import Contact from '@/components/Contact';
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
+  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
+
+  // Handle loading screen timeout
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Track global mouse position for the subtle cursor glow
+  useEffect(() => {
+    const updateMouse = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', updateMouse);
+    return () => window.removeEventListener('mousemove', updateMouse);
+  }, []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      {/* Loading Screen */}
+      <AnimatePresence>
+        {loading && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: 'easeInOut' }}
+            className="fixed inset-0 z-50 bg-[#020205] flex flex-col items-center justify-center"
+          >
+            {/* Elegant initials loader */}
+            <div className="relative flex items-center justify-center">
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="text-white text-3xl font-extrabold tracking-widest relative z-10 font-sans"
+              >
+                SN
+              </motion.div>
+              {/* Outer pulsing ring */}
+              <motion.div
+                initial={{ scale: 0.7, opacity: 0 }}
+                animate={{ scale: [0.7, 1.2, 1.4], opacity: [0.5, 0.8, 0] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 1.5,
+                  ease: 'easeOut',
+                }}
+                className="absolute h-16 w-16 rounded-full border border-accent/40"
+              />
+            </div>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-zinc-500 text-xs font-mono tracking-widest uppercase mt-6"
+            >
+              Handcrafting Portfolio
+            </motion.p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Main Content */}
+      <div className="relative min-h-screen text-zinc-300 bg-[#020205] selection:bg-accent/30 selection:text-white">
+        
+        {/* Subtle Cursor Glow Effect */}
+        <div
+          className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-500 hidden md:block"
+          style={{
+            background: `radial-gradient(500px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(124, 92, 252, 0.045), transparent 80%)`,
+          }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        {/* Global Abstract Background Blobs */}
+        <div className="absolute top-0 inset-x-0 h-[800px] bg-gradient-to-b from-accent/5 to-transparent pointer-events-none" />
+
+        <Navbar />
+
+        <main>
+          {/* Landing/Hero Section */}
+          <Hero />
+
+          {/* About / Storytelling */}
+          <About />
+
+          {/* Tech Stack */}
+          <TechStack />
+
+          {/* Projects */}
+          <Projects />
+
+          {/* Timeline & Experiences */}
+          <Experience />
+
+          {/* Achievements */}
+          <Achievements />
+
+          {/* GitHub Activity Metrics */}
+          <GithubSection />
+
+          {/* Contact Section & Footer */}
+          <Contact />
+        </main>
+      </div>
+    </>
   );
 }
