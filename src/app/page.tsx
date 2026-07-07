@@ -11,6 +11,7 @@ import Experience from '@/components/Experience';
 import Achievements from '@/components/Achievements';
 import GithubSection from '@/components/GithubSection';
 import Contact from '@/components/Contact';
+import ThemeCustomizer from '@/components/ThemeCustomizer';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -119,6 +120,8 @@ export default function Home() {
           {/* Contact Section & Footer */}
           <Contact />
         </main>
+        
+        <ThemeCustomizer />
       </div>
     </>
   );
